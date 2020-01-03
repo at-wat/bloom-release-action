@@ -1,6 +1,7 @@
 # bloom-release-action
 
 GitHub Action to bloom release the ROS package.
+**This action is not yet ready for use. Use with very much care!**
 
 ## Inputs
 <dl>
@@ -16,6 +17,33 @@ GitHub Action to bloom release the ROS package.
 </dl>
 
 ## Example
+
+### Manually tag and release
+
+```yaml
+name: bloom-release
+on:
+  push:
+    tags:
+      - '[0-9]+.[0-9]+.[0-9]+'
+
+jobs:
+  bloom-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: bloom release
+        uses: at-wat/bloom-release-action@master
+        with:
+          ros_distro: kinetic melodic
+          github_token_bloom: ${{ secrets.GITHUB_TOKEN_BLOOM }}
+          github_user: @@MAINTAINER_LOGIN@@
+          git_email: @@MAINTAINER_EMAIL_ADDRESS@@
+          release_repository_push_url: https://github.com/owner/repo-release.git
+```
+
+### Automatically tag and release
+
+Use with [at-wat/catkin-release-action](https://github.com/at-wat/catkin-release-action).
 
 ```yaml
 name: bloom-release
