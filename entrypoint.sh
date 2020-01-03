@@ -40,6 +40,8 @@ then
   options="${options} --no-pull-request"
 fi
 
+export TERM=dumb
+
 for ros_distro in ${INPUT_ROS_DISTRO}
 do
   bloom-release \
