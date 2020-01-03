@@ -9,8 +9,8 @@ set -eu
 mkdir -p ~/.config
 echo "{\"github_user\": \"${INPUT_GITHUB_USER}\", \"oauth_token\": \"${INPUT_GITHUB_TOKEN_BLOOM}\"}" > ~/.config/bloom
 echo -e "machine github.com\nlogin ${INPUT_GITHUB_TOKEN_BLOOM}" > ~/.netrc
-git config user.name ${INPUT_GIT_USER:-${INPUT_GITHUB_USER}}
-git config user.email ${INPUT_GIT_EMAIL}
+git config --global user.name ${INPUT_GIT_USER:-${INPUT_GITHUB_USER}}
+git config --global user.email ${INPUT_GIT_EMAIL}
 
 if [ "${INPUT_TAG_AND_RELEASE}" == "true" ]
 then
