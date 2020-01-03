@@ -5,7 +5,7 @@ inputs:
     description: "ROS distributions to create a release."
     required: true
   github_token_bloom:
-    description: "GitHub personal access token to push to your rosdistro fork."
+    description: "GitHub personal access token to push to your release repository and rosdistro fork."
     required: true
   github_user:
     description: "GitHub login name to push to your rosdistro fork."

@@ -1,12 +1,13 @@
 # bloom-release-action
 
 GitHub Action to bloom release the ROS package.
-**This action is not yet ready for use. Use with very much care!**
+
+**This action requires higher privilege than typical action to push to the release repository and open pull-requests to the index. Use it with special care!**
 
 ## Inputs
 <dl>
 <dt>ros_distro</dt> <dd>ROS distributions to create a release. (required)</dd>
-<dt>github_token_bloom</dt> <dd>GitHub personal access token to push to your rosdistro fork. (required)</dd>
+<dt>github_token_bloom</dt> <dd>GitHub personal access token to push to your release repository and rosdistro fork. Use <a href="https://help.github.com/en/actions/automating-your-workflow-with-github-actions/creating-and-using-encrypted-secrets">encrypted secrets</a>. (required)</dd>
 <dt>github_user</dt> <dd>GitHub login name to push to your rosdistro fork. (required)</dd>
 <dt>git_user</dt> <dd>User name of commit author. Defaults to github_user.</dd>
 <dt>git_email</dt> <dd>E-mail address of commit author. (required)</dd>
@@ -42,9 +43,12 @@ jobs:
           ros_distro: kinetic melodic
           github_token_bloom: ${{ secrets.GITHUB_TOKEN_BLOOM }}
           github_user: @@MAINTAINER_LOGIN@@
+          git_user: @@MAINTAINER_NAME@@
           git_email: @@MAINTAINER_EMAIL_ADDRESS@@
           release_repository_push_url: https://github.com/${{ github.repository }}-release.git
+          # open_pr: true
 ```
+Test carefully before enabling `open_pr`.
 
 ### Automatically tag and release
 
@@ -71,13 +75,16 @@ jobs:
           ros_distro: kinetic melodic
           github_token_bloom: ${{ secrets.GITHUB_TOKEN_BLOOM }}
           github_user: @@MAINTAINER_LOGIN@@
+          git_user: @@MAINTAINER_NAME@@
           git_email: @@MAINTAINER_EMAIL_ADDRESS@@
           release_repository_push_url: https://github.com/${{ github.repository }}-release.git
           tag_and_release: true
+          # open_pr: true
 ```
+Test carefully before enabling `open_pr`.
 
 If you want to create a GitHub Release on the created tag, append following step:
-```
+```yaml
       - name: create release
         uses: actions/create-release@v1
         with:
