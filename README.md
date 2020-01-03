@@ -38,7 +38,7 @@ jobs:
           github_token_bloom: ${{ secrets.GITHUB_TOKEN_BLOOM }}
           github_user: @@MAINTAINER_LOGIN@@
           git_email: @@MAINTAINER_EMAIL_ADDRESS@@
-          release_repository_push_url: https://github.com/owner/repo-release.git
+          release_repository_push_url: https://github.com/${{ github.repository }}-release.git
 ```
 
 ### Automatically tag and release
@@ -67,6 +67,6 @@ jobs:
           github_token_bloom: ${{ secrets.GITHUB_TOKEN_BLOOM }}
           github_user: @@MAINTAINER_LOGIN@@
           git_email: @@MAINTAINER_EMAIL_ADDRESS@@
-          release_repository_push_url: https://github.com/owner/repo-release.git
+          release_repository_push_url: https://github.com/${{ github.repository }}-release.git
           tag_and_release: true
 ```
