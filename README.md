@@ -7,7 +7,7 @@ GitHub Action to bloom release the ROS package.
 ## Inputs
 <dl>
 <dt>ros_distro</dt> <dd>ROS distributions to create a release. (required)</dd>
-<dt>github_token_bloom</dt> <dd>GitHub personal access token to push to your rosdistro fork. Use <a href="https://help.github.com/en/actions/automating-your-workflow-with-github-actions/creating-and-using-encrypted-secrets">encrypted secrets</a>. (required)</dd>
+<dt>github_token_bloom</dt> <dd>GitHub personal access token to push to your release repository and rosdistro fork. Use <a href="https://help.github.com/en/actions/automating-your-workflow-with-github-actions/creating-and-using-encrypted-secrets">encrypted secrets</a>. (required)</dd>
 <dt>github_user</dt> <dd>GitHub login name to push to your rosdistro fork. (required)</dd>
 <dt>git_user</dt> <dd>User name of commit author. Defaults to github_user.</dd>
 <dt>git_email</dt> <dd>E-mail address of commit author. (required)</dd>
