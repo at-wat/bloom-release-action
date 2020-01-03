@@ -41,7 +41,7 @@ fi
 
 for ros_distro in ${INPUT_ROS_DISTRO}
 do
-  echo bloom-release \
+  bloom-release \
     -y \
     --no-web \
     --ros-distro ${ros_distro} \
