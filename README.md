@@ -84,7 +84,7 @@ jobs:
 Test carefully before enabling `open_pr`.
 
 If you want to create a GitHub Release on the created tag, append following step:
-```
+```yaml
       - name: create release
         uses: actions/create-release@v1
         with:
