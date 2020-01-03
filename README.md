@@ -16,6 +16,11 @@ GitHub Action to bloom release the ROS package.
 <dt>open_pr</dt> <dd>Set true to open PR on ros/rosdistro automatically. (use with care)</dd>
 </dl>
 
+## Outputs
+<dl>
+  <dt>version</dt> <dd>Version of the created release on tag_and_release=true.</dd>
+</dl>
+
 ## Example
 
 ### Manually tag and release
