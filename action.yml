@@ -1,0 +1,31 @@
+name: "Bloom release ROS package"
+description: "Bloom release the ROS package"
+inputs:
+  ros_distro:
+    description: "ROS distributions to create a release."
+    required: true
+  github_token_bloom:
+    description: "GitHub personal access token to push to your rosdistro fork."
+    required: true
+  github_user:
+    description: "GitHub login name to push to your rosdistro fork."
+    required: true
+  git_user:
+    description: "User name of commit author. Defaults to github_user."
+  git_email:
+    description: "E-mail address of commit author."
+    required: true
+  repository:
+    description: "Override package repository name."
+  release_repository_push_url:
+    description: "Override release repository push URL. Must be https."
+  tag_and_release:
+    description: "Set true to add a tag automatically if not exist. It requires that the source code is checked out."
+  open_pr:
+    description: "Set true to open PR on ros/rosdistro automatically."
+runs:
+  using: "docker"
+  image: "Dockerfile"
+branding:
+  icon: "send"
+  color: "blue"
