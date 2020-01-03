@@ -27,6 +27,9 @@ then
   fi
 fi
 
+# Initialize
+rosdep update
+
 # Prepare bloom-release
 options=
 
