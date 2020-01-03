@@ -23,6 +23,9 @@ inputs:
     description: "Set true to add a tag automatically if not exist. It requires that the source code is checked out."
   open_pr:
     description: "Set true to open PR on ros/rosdistro automatically."
+outputs:
+  version:
+    description: "Version of the created release on tag_and_release=true."
 runs:
   using: "docker"
   image: "Dockerfile"
