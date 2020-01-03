@@ -70,3 +70,14 @@ jobs:
           release_repository_push_url: https://github.com/${{ github.repository }}-release.git
           tag_and_release: true
 ```
+
+If you want to create a GitHub Release on the created tag, append following step:
+```
+      - name: create release
+        uses: actions/create-release@v1
+        with:
+          tag_name: ${{ steps.bloom_release.outputs.version }}
+          release_name: ${{ steps.bloom_release.outputs.version }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+```
