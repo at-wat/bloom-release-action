@@ -93,3 +93,5 @@ If you want to create a GitHub Release on the created tag, append following step
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
+
+See https://github.com/at-wat/mcl_3dl for the working example.
