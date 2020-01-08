@@ -60,6 +60,7 @@ on:
   push:
     paths:
       - package.xml
+      - '*/package.xml'
     branches:
       - master
 

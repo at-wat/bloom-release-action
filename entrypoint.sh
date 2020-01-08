@@ -14,6 +14,7 @@ git config --global user.email ${INPUT_GIT_EMAIL}
 
 if [ "${INPUT_TAG_AND_RELEASE}" == "true" ]
 then
+  manifest=$(find . -name package.xml | head -n1)
   version=$(sed -e ':l;N;$!b l;s/\n/ /g;s|^.*<version>\(.*\)</version>.*|\1|' package.xml)
   if ! git ls-remote --exit-code origin ${version}
   then
