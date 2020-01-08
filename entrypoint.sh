@@ -14,7 +14,8 @@ git config --global user.email ${INPUT_GIT_EMAIL}
 
 if [ "${INPUT_TAG_AND_RELEASE}" == "true" ]
 then
-  version=$(sed -e ':l;N;$!b l;s/\n/ /g;s|^.*<version>\(.*\)</version>.*|\1|' package.xml)
+  manifest=$(find . -name package.xml | head -n1)
+  version=$(sed -e ':l;N;$!b l;s/\n/ /g;s|^.*<version>\(.*\)</version>.*|\1|' ${manifest})
   if ! git ls-remote --exit-code origin ${version}
   then
     echo "Tag ${version} not found. Adding..."
