@@ -50,7 +50,7 @@ for ros_distro in ${INPUT_ROS_DISTRO}
 do
   pkg=${INPUT_REPOSITORY:-$(basename ${GITHUB_REPOSITORY})}
 
-  if ! rosdep resolve ${pkg}
+  if ! (rosdep resolve ${pkg} --rosdistro=${ros_distro} 2>&1 | grep ubuntu > /dev/null)
   then
     echo "${pkg} is not released to ${ros_distro} yet."
     echo "Initial release should be done by hand."
