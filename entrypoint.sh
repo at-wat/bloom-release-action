@@ -48,10 +48,19 @@ export TERM=dumb
 
 for ros_distro in ${INPUT_ROS_DISTRO}
 do
+  pkg=${INPUT_REPOSITORY:-$(basename ${GITHUB_REPOSITORY})}
+
+  if ! rosdep resolve ${pkg}
+  then
+    echo "${pkg} is not released to ${ros_distro} yet."
+    echo "Initial release should be done by hand."
+    continue
+  fi
+
   bloom-release \
     -y \
     --no-web \
     --ros-distro ${ros_distro} \
     ${options} \
-    ${INPUT_REPOSITORY:-$(basename ${GITHUB_REPOSITORY})}
+    ${pkg}
 done
