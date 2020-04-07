@@ -28,16 +28,14 @@ then
     echo "Tag ${version} found. Nothing to do."
     exit 0
   fi
-
-  if [ $(find . -name package.xml | wc -l) -eq 1 ]
-  then
-    pkgname=$(sed -e ':l;N;$!b l;s/\n/ /g;s|^.*<name>\(.*\)</name>.*|\1|' ${manifest})
-  fi
 fi
 
 if [ ! -z ${INPUT_REPOSITORY:-} ]
 then
   pkgname=${INPUT_REPOSITORY}
+elif [ $(find . -name package.xml | wc -l) -eq 1 ]
+then
+  pkgname=$(sed -e ':l;N;$!b l;s/\n/ /g;s|^.*<name>\(.*\)</name>.*|\1|' ${manifest})
 fi
 
 # Initialize
