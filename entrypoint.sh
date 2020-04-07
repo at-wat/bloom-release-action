@@ -12,6 +12,8 @@ echo -e "machine github.com\nlogin ${INPUT_GITHUB_TOKEN_BLOOM}" > ~/.netrc
 git config --global user.name ${INPUT_GIT_USER:-${INPUT_GITHUB_USER}}
 git config --global user.email ${INPUT_GIT_EMAIL}
 
+pkgname=$(basename ${GITHUB_REPOSITORY})
+
 if [ "${INPUT_TAG_AND_RELEASE}" == "true" ]
 then
   manifest=$(find . -name package.xml | head -n1)
@@ -26,6 +28,16 @@ then
     echo "Tag ${version} found. Nothing to do."
     exit 0
   fi
+
+  if [ $(find . -name package.xml | wc -l) -eq 1 ]
+  then
+    pkgname=$(sed -e ':l;N;$!b l;s/\n/ /g;s|^.*<name>\(.*\)</name>.*|\1|' ${manifest})
+  fi
+fi
+
+if [ ! -z ${INPUT_REPOSITORY:-} ]
+then
+  pkgname=${INPUT_REPOSITORY}
 fi
 
 # Initialize
@@ -48,11 +60,10 @@ export TERM=dumb
 
 for ros_distro in ${INPUT_ROS_DISTRO}
 do
-  pkg=${INPUT_REPOSITORY:-$(basename ${GITHUB_REPOSITORY})}
 
-  if ! (rosdep resolve ${pkg} --rosdistro=${ros_distro} 2>&1 | grep ubuntu > /dev/null)
+  if ! (rosdep resolve ${pkgname} --rosdistro=${ros_distro} 2>&1 | grep ubuntu > /dev/null)
   then
-    echo "${pkg} is not released to ${ros_distro} yet."
+    echo "${pkgname} is not released to ${ros_distro} yet."
     echo "Initial release should be done by hand."
     continue
   fi
@@ -62,5 +73,5 @@ do
     --no-web \
     --ros-distro ${ros_distro} \
     ${options} \
-    ${pkg}
+    ${pkgname}
 done
