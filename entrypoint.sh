@@ -12,8 +12,6 @@ echo -e "machine github.com\nlogin ${INPUT_GITHUB_TOKEN_BLOOM}" > ~/.netrc
 git config --global user.name ${INPUT_GIT_USER:-${INPUT_GITHUB_USER}}
 git config --global user.email ${INPUT_GIT_EMAIL}
 
-pkgname=$(basename ${GITHUB_REPOSITORY})
-
 if [ "${INPUT_TAG_AND_RELEASE}" == "true" ]
 then
   manifest=$(find . -name package.xml | head -n1)
@@ -30,13 +28,16 @@ then
   fi
 fi
 
-if [ ! -z ${INPUT_REPOSITORY:-} ]
+pkgname=${INPUT_REPOSITORY:-$(basename ${GITHUB_REPOSITORY})}
+if [ $(find . -name package.xml | wc -l) -eq 1 ]
 then
-  pkgname=${INPUT_REPOSITORY}
-elif [ $(find . -name package.xml | wc -l) -eq 1 ]
-then
+  manifest=$(find . -name package.xml | head -n1)
   pkgname=$(sed -e ':l;N;$!b l;s/\n/ /g;s|^.*<name>\(.*\)</name>.*|\1|' ${manifest})
 fi
+
+echo
+echo "Package name: ${pkgname}"
+echo
 
 # Initialize
 rosdep update
@@ -61,8 +62,10 @@ do
 
   if ! (rosdep resolve ${pkgname} --rosdistro=${ros_distro} 2>&1 | grep ubuntu > /dev/null)
   then
+    echo
     echo "${pkgname} is not released to ${ros_distro} yet."
     echo "Initial release should be done by hand."
+    echo
     continue
   fi
 
@@ -71,5 +74,5 @@ do
     --no-web \
     --ros-distro ${ros_distro} \
     ${options} \
-    ${pkgname}
+    ${INPUT_REPOSITORY:-$(basename ${GITHUB_REPOSITORY})}
 done
