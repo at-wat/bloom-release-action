@@ -1,10 +1,10 @@
-FROM alpine:3.10
+FROM alpine:3.13
 
 RUN apk add --no-cache \
     bash \
     git \
     py3-pip \
-  && pip3 install bloom rosdep
+  && python3 -m pip install bloom rosdep
 RUN rosdep init
 
 COPY entrypoint.sh /
