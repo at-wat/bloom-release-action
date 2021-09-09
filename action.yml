@@ -23,6 +23,8 @@ inputs:
     description: "Set true to add a tag automatically if not exist. It requires that the source code is checked out."
   open_pr:
     description: "Set true to open PR on ros/rosdistro automatically."
+  debug_bloom:
+    description: "Enable bloom debug output."
 outputs:
   version:
     description: "Version of the created release on tag_and_release=true."

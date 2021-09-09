@@ -55,6 +55,11 @@ then
   options="${options} --no-pull-request"
 fi
 
+if [ "${INPUT_DEBUG_BLOOM:-false}" != "true" ]
+then
+  options="${options} --debug"
+fi
+
 export TERM=dumb
 
 for ros_distro in ${INPUT_ROS_DISTRO}
