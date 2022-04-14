@@ -12,6 +12,8 @@ echo -e "machine github.com\nlogin ${INPUT_GITHUB_TOKEN_BLOOM}" > ~/.netrc
 git config --global user.name ${INPUT_GIT_USER:-${INPUT_GITHUB_USER}}
 git config --global user.email ${INPUT_GIT_EMAIL}
 
+git config --global --add safe.directory "${GITHUB_WORKSPACE}"
+
 if [ "${INPUT_TAG_AND_RELEASE}" == "true" ]
 then
   manifest=$(find . -name package.xml | head -n1)
