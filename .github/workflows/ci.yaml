@@ -1,0 +1,49 @@
+name: test
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Set runner IP
+        id: ip
+        run: |
+          iface=$(ls -1 /sys/class/net | sed '/^\(lo\|br-\|veth\|docker\|bond\|dummy\|sit\)/d' | head -n1)
+          ip=$(ip a show dev ${iface} | sed -n 's|^\s*inet\s\([0-9\.]\+\)/.*|\1|p' | head -n1)
+          echo ${ip}
+          echo "::set-output name=ip::${ip}"
+          sed "s/localhost/${ip}/g" -i $(find test -type f)
+      - name: Build dummy server
+        run: cd test && docker-compose build
+      - name: Start dummy server
+        run: cd test && docker-compose up -d
+
+      - name: Prpare repos
+        run: |
+          mv ${GITHUB_WORKSPACE} /tmp/orig
+          git clone http://localhost/repos/foo.git ${GITHUB_WORKSPACE}
+          mv /tmp/orig ${GITHUB_WORKSPACE}/.bloom-release-action
+      - name: Run bloom-release-action
+        uses: ./.bloom-release-action
+        with:
+          ros_distro: noetic
+          github_token_bloom: dummy
+          github_user: dummy
+          git_email: dummy@dummy
+          repository: foo
+          open_pr: true
+        env:
+          ROSDISTRO_INDEX_URL: http://${{ steps.ip.outputs.ip }}/raw/rosdistro/index-v4.yaml
+
+      - name: Check release repo
+        working-directory: /tmp
+        run: |
+          git clone http://localhost/repos/foo-release.git
+          cd foo-release
+          git show upstream/0.0.1

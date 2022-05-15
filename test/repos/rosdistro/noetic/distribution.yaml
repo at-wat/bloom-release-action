@@ -1,0 +1,41 @@
+%YAML 1.1
+# ROS distribution file
+# see REP 143: http://ros.org/reps/rep-0143.html
+---
+release_platforms:
+  ubuntu:
+  - focal
+repositories:
+  catkin:
+    doc:
+      type: git
+      url: https://github.com/ros/catkin.git
+      version: noetic-devel
+    release:
+      tags:
+        release: release/noetic/{package}/{version}
+      url: https://github.com/ros-gbp/catkin-release.git
+      version: 0.8.10-1
+    source:
+      test_pull_requests: true
+      type: git
+      url: https://github.com/ros/catkin.git
+      version: noetic-devel
+    status: maintained
+  foo:
+    doc:
+      type: git
+      url: http://localhost/repos/foo.git
+      version: master
+    release:
+      tags:
+        release: release/noetic/{package}/{version}
+      url: http://localhost/repos/foo-release.git
+      version: 0.0.0-0
+    source:
+      type: git
+      url: http://localhost/repos/foo.git
+      version: master
+    status: maintained
+type: distribution
+version: 2
