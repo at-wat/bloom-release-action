@@ -5,7 +5,7 @@ distribution_file:
     foo: {release: {tags: {release: 'release/hoge/{package}/{version}'}, url: 'http://localhost/repos/foo-release.git', version: 0.0.0-0}, source: {type: git, url: 'http://localhost/repos/foo.git', version: hoge}, status: maintained}
 name: hoge
 release_package_xmls:
-  foo: <?xml version="1.0" ?><?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?><package format="3"><name>foo</name><version>0.0.0</version><description>Dummy</description><maintainer email="dummy@dummy">Dummy</maintainer><license>Dummy</license><buildtool_depend>catkin</buildtool_depend></package>
+  foo: <?xml version="1.0" ?><?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?><package format="3"><name>foo</name><version>0.0.0</version><description>Dummy</description><maintainer email="dummy@dummy.dummy">Dummy</maintainer><license>Dummy</license><buildtool_depend>catkin</buildtool_depend></package>
 source_repo_package_xmls: {}
 type: cache
 version: 2
