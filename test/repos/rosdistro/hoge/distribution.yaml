@@ -10,11 +10,11 @@ repositories:
     release:
       tags:
         release: release/hoge/{package}/{version}
-      url: http://localhost/repos/hoge-release.git
+      url: http://localhost/repos/foo-release.git
       version: 0.0.0-0
     source:
       type: git
-      url: http://localhost/repos/hoge.git
+      url: http://localhost/repos/foo.git
       version: hoge
     status: maintained
 type: distribution
