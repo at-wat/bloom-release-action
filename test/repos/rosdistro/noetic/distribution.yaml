@@ -15,7 +15,7 @@ repositories:
     source:
       type: git
       url: http://localhost/repos/foo.git
-      version: noetic
+      version: master
     status: maintained
 type: distribution
 version: 2
