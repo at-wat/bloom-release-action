@@ -12,9 +12,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Build dummy server
-        run: docker-compose build
+        run: cd test && docker-compose build
       - name: Start dummy server
-        run: docker-compose up -d
+        run: cd test && docker-compose up -d
       - name: Run bloom-release-action
         uses: ./
         with:
