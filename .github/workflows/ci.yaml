@@ -15,6 +15,10 @@ jobs:
         run: cd test && docker-compose build
       - name: Start dummy server
         run: cd test && docker-compose up -d
+
+      - name: Debugging
+        run: curl http://localhost/raw/rosdistro/index-v4.yaml
+
       - name: Run bloom-release-action
         uses: ./
         with:
