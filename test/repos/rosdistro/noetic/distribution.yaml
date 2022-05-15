@@ -23,6 +23,10 @@ repositories:
       version: noetic-devel
     status: maintained
   foo:
+    doc:
+      type: git
+      url: http://localhost/repos/foo.git
+      version: master
     release:
       tags:
         release: release/noetic/{package}/{version}
