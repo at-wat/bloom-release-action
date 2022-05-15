@@ -14,7 +14,7 @@ jobs:
       - name: Start dummy server
         run: docker-compose up -d
       - name: Run bloom-release-action
-        use: ./
+        uses: ./
         with:
           ros_distro: hoge
           github_token_bloom: dummy
