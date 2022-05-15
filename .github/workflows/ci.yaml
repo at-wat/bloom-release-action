@@ -32,7 +32,7 @@ jobs:
       - name: Run bloom-release-action
         uses: ./.bloom-release-action
         with:
-          ros_distro: hoge
+          ros_distro: noetic
           github_token_bloom: dummy
           github_user: dummy
           git_email: dummy@dummy

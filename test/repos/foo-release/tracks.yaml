@@ -1,6 +1,6 @@
 release_repo_url: http://localhost/repos/foo-release.git
 tracks:
-  hoge:
+  noetic:
     actions:
     - bloom-export-upstream :{vcs_local_uri} :{vcs_type} --tag :{release_tag} --display-uri
       :{vcs_uri} --name :{name} --output-dir :{archive_dir_path}
@@ -22,7 +22,7 @@ tracks:
     release_inc: '0'
     release_repo_url: http://localhost/repos/foo-release.git
     release_tag: :{version}
-    ros_distro: hoge
+    ros_distro: noetic
     vcs_type: git
     vcs_uri: http://localhost/repos/foo.git
     version: :{auto}

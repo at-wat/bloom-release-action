@@ -3,9 +3,9 @@
 # see REP 153: http://ros.org/reps/rep-0153.html
 ---
 distributions:
-  hoge:
-    distribution: [hoge/distribution.yaml]
-    distribution_cache: http://localhost/cache/hoge-cache.yaml.gz
+  noetic:
+    distribution: [noetic/distribution.yaml]
+    distribution_cache: http://localhost/cache/noetic-cache.yaml.gz
     distribution_status: active
     distribution_type: ros1
     python_version: 3
