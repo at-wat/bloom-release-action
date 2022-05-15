@@ -1,0 +1,21 @@
+%YAML 1.1
+# ROS distribution file
+# see REP 143: http://ros.org/reps/rep-0143.html
+---
+release_platforms:
+  ubuntu:
+  - focal
+repositories:
+  foo:
+    release:
+      tags:
+        release: release/hoge/{package}/{version}
+      url: http://localhost/repos/hoge-release.git
+      version: 0.0.0-0
+    source:
+      type: git
+      url: http://localhost/repos/hoge.git
+      version: hoge
+    status: maintained
+type: distribution
+version: 2

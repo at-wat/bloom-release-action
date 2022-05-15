@@ -1,0 +1,26 @@
+name: test
+on:
+  push:
+  pull_request:
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Build dummy server
+        run: docker-compose build
+      - name: Start dummy server
+        run: docker-compose up -d
+      - name: Run bloom-release-action
+        use: ./
+        with:
+          ros_distro: hoge
+          github_token_bloom: dummy
+          github_user: dummy
+          git_email: dummy@dummy
+          release_repository_push_url: http://localhost/repos/foo-release.git
+          open_pr: false
+        env:
+          ROSDISTRO_INDEX_URL: http://localhost/raw/rosdistro/index-v4.yaml

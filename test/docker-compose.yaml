@@ -1,0 +1,7 @@
+version: '3.5'
+services:
+  bloom-test:
+    image: bloom-test
+    build: .
+    ports:
+      - "80:80"

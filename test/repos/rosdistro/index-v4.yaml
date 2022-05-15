@@ -1,0 +1,13 @@
+%YAML 1.1
+# ROS index file
+# see REP 153: http://ros.org/reps/rep-0153.html
+---
+distributions:
+  hoge:
+    distribution: [hoge/distribution.yaml]
+    distribution_cache: http://localhost/cache/hoge-cache.yaml.gz
+    distribution_status: active
+    distribution_type: ros
+    python_version: 3
+type: index
+version: 4
