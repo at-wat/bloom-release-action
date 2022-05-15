@@ -26,11 +26,11 @@ jobs:
 
       - name: Prpare repos
         run: |
-          git -C /tmp clone http://localhost/repos/foo.git
-          mv ${GITHUB_WORKSPACE} ${GITHUB_WORKSPACE}/../bloom-release-action2
-          mv /tmp/foo ${GITHUB_WORKSPACE}
+          mv ${GITHUB_WORKSPACE} /tmp/orig
+          git clone http://localhost/repos/foo.git ${GITHUB_WORKSPACE}
+          mv /tmp/orig ${GITHUB_WORKSPACE}/.bloom-release-action
       - name: Run bloom-release-action
-        uses: ../bloom-release-action2
+        uses: ./.bloom-release-action
         with:
           ros_distro: hoge
           github_token_bloom: dummy
