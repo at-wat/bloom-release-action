@@ -11,13 +11,16 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+      - name: Set runner IP
+        run: |
+          iface=$(ls -1 /sys/class/net | sed '/^\(lo\|br-\|veth\|docker\|bond\|dummy\|sit\)/d' | head -n1)
+          ip=$(ip a show dev ${iface} | sed -n 's|^\s*inet\s\([0-9\.]\+\)/.*|\1|p' | head -n1)
+          echo ${ip}
+          sed "s/localhost/${ip}/g" -i $(find test -type f)
       - name: Build dummy server
         run: cd test && docker-compose build
       - name: Start dummy server
         run: cd test && docker-compose up -d
-
-      - name: Debugging
-        run: curl http://localhost/raw/rosdistro/index-v4.yaml
 
       - name: Run bloom-release-action
         uses: ./
