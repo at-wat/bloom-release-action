@@ -37,7 +37,13 @@ jobs:
           github_user: dummy
           git_email: dummy@dummy
           repository: foo
-          release_repository_push_url: http://${{ steps.ip.outputs.ip }}/repos/foo-release.git
-          open_pr: false
+          open_pr: true
         env:
           ROSDISTRO_INDEX_URL: http://${{ steps.ip.outputs.ip }}/raw/rosdistro/index-v4.yaml
+
+      - name: Check release repo
+        working-directory: /tmp
+        run: |
+          git clone http://localhost/repos/foo-release.git
+          cd foo-release
+          git show upstream/0.0.1
