@@ -7,7 +7,7 @@ distributions:
     distribution: [hoge/distribution.yaml]
     distribution_cache: http://localhost/cache/hoge-cache.yaml.gz
     distribution_status: active
-    distribution_type: ros
+    distribution_type: ros1
     python_version: 3
 type: index
 version: 4
