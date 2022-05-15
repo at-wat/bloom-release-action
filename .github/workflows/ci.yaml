@@ -24,13 +24,13 @@ jobs:
       - name: Start dummy server
         run: cd test && docker-compose up -d
 
-      - name: Prpare release
+      - name: Prpare repos
         run: |
           git -C /tmp clone http://localhost/repos/foo.git
-          rm -rf ${GITHUB_WORKSPACE}
+          mv ${GITHUB_WORKSPACE} /tmp/bloom-release-action
           mv /tmp/foo ${GITHUB_WORKSPACE}
       - name: Run bloom-release-action
-        uses: ./
+        uses: /tmp/bloom-release-action
         with:
           ros_distro: hoge
           github_token_bloom: dummy
