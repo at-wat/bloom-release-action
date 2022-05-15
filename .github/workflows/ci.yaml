@@ -24,8 +24,11 @@ jobs:
       - name: Start dummy server
         run: cd test && docker-compose up -d
 
+      - name: Prpare release
+        run: git -C /tmp clone http://localhost/repos/foo.git
       - name: Run bloom-release-action
         uses: ./
+        working-directory: /tmp/foo
         with:
           ros_distro: hoge
           github_token_bloom: dummy

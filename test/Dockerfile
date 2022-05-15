@@ -25,6 +25,11 @@ RUN for repo in *; \
     git -C ${repo} init; \
     git -C ${repo} add .; \
     git -C ${repo} commit -m "Initial"; \
+    if [ ${repo} = "foo" ]; \
+    then \
+      git -C ${repo} tag 0.0.1; \
+      git -C ${repo} push origin 0.0.1; \
+    fi; \
     git -C ${repo} config core.bare true; \
     git -C ${repo} config http.receivepack true; \
     mv ${repo}/.git ${repo}.git; \
