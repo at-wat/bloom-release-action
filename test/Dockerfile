@@ -33,5 +33,6 @@ RUN for repo in *; \
     git -C ${repo} config core.bare true; \
     git -C ${repo} config http.receivepack true; \
     mv ${repo}/.git ${repo}.git; \
+    chown -R fcgiwrap:www-data ${repo}.git; \
     rm -rf ${repo}; \
   done
