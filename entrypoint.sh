@@ -23,7 +23,7 @@ then
     echo "Tag ${version} not found. Adding..."
     git tag ${version}
     git push origin ${version}
-    echo "::set-output name=version::${version}"
+    echo "version=${version}" >> ${GITHUB_OUTPUT}
   else
     echo "Tag ${version} found. Nothing to do."
     exit 0
