@@ -5,7 +5,7 @@ RUN apk add --no-cache \
     git \
     py3-pip \
   && python3 -m pip install \
-    git+https://github.com/at-wat/bloom.git@use-empy-v3 \
+    git+https://github.com/ros-infrastructure/bloom@master \
     rosdep
 RUN rosdep init
 
