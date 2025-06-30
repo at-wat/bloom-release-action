@@ -17,7 +17,7 @@ jobs:
           iface=$(ls -1 /sys/class/net | sed '/^\(lo\|br-\|veth\|docker\|bond\|dummy\|sit\)/d' | head -n1)
           ip=$(ip a show dev ${iface} | sed -n 's|^\s*inet\s\([0-9\.]\+\)/.*|\1|p' | head -n1)
           echo ${ip}
-          echo "::set-output name=ip::${ip}"
+          echo "ip=${ip}" >>${GITHUB_OUTPUT}
           sed "s/localhost/${ip}/g" -i $(find test -type f)
       - name: Build dummy server
         run: cd test && docker compose build
