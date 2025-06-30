@@ -20,9 +20,9 @@ jobs:
           echo "::set-output name=ip::${ip}"
           sed "s/localhost/${ip}/g" -i $(find test -type f)
       - name: Build dummy server
-        run: cd test && docker-compose build
+        run: cd test && docker compose build
       - name: Start dummy server
-        run: cd test && docker-compose up -d
+        run: cd test && docker compose up -d
 
       - name: Prpare repos
         run: |
