@@ -4,7 +4,7 @@ RUN apk add --no-cache \
     bash \
     git \
     py3-pip \
-  && python3 -m pip install \
+  && python3 -m pip install --break-system-packages \
     git+https://github.com/ros-infrastructure/bloom@master \
     rosdep
 RUN rosdep init
